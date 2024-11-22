@@ -1,66 +1,103 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# EasyBill Payments System API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+A RESTful API built using Laravel for managing users and transactions in a simple bill payment system.
 
-## About Laravel
+## Features
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **Users**: Full CRUD operations for managing users.
+- **Transactions**: Full CRUD operations for managing transactions linked to users.
+- **Database Relationships**: Proper relationships between users and transactions using Laravel Eloquent.
+- **API Responses**: API responses are handled using Laravel's Eloquent API Resources.
+- **Validation**: Input data is validated for all operations.
+- **Unit Testing**: Comprehensive unit tests for API endpoints.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## Installation and Setup
 
-## Learning Laravel
+### Prerequisites
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+Ensure you have the following installed on your system:
+- PHP >= 8.0
+- Composer
+- MySQL
+- Laravel CLI
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+### Steps
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+1. Clone the repository:
+   ```bash
+   git clone <your-repository-url>
+   cd easybill_test_payment_system
+   ```
 
-## Laravel Sponsors
+2. Install dependencies:
+    composer install
+3. Set up the .env file:
+    Copy .env.example to .env
+     ```bash
+        cp .env.example .env
+    ```
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+4. Update database credentials in the .env file
+   ```bash
+        DB_CONNECTION=mysql
+        DB_HOST=127.0.0.1
+        DB_PORT=3306
+        DB_DATABASE=bill_payments
+        DB_USERNAME=root
+        DB_PASSWORD=your_password
+    ```
 
-### Premium Partners
+5. Generate the application key:
+   php artisan key:generate
 
-- **[Vehikl](https://vehikl.com/)**
-- **[Tighten Co.](https://tighten.co)**
-- **[WebReinvent](https://webreinvent.com/)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel/)**
-- **[Cyber-Duck](https://cyber-duck.co.uk)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Jump24](https://jump24.co.uk)**
-- **[Redberry](https://redberry.international/laravel/)**
-- **[Active Logic](https://activelogic.com)**
-- **[byte5](https://byte5.de)**
-- **[OP.GG](https://op.gg)**
+6. Start the development server:
+    ```bash
+        php artisan serve
+    ```
+    The application will be available at http://127.0.0.1:8000.
 
-## Contributing
+## API Endpoints
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Base URL
+`http://127.0.0.1:8000/api`
 
-## Code of Conduct
+### Users Endpoints
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+| Method | Endpoint         | Description                     |
+|--------|-------------------|---------------------------------|
+| GET    | `/users`          | List all users                 |
+| POST   | `/users`          | Create a new user              |
+| GET    | `/users/{id}`     | Retrieve a specific user       |
+| PUT    | `/users/{id}`     | Update a specific user         |
+| DELETE | `/users/{id}`     | Delete a specific user         |
 
-## Security Vulnerabilities
+### Transactions Endpoints
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+| Method | Endpoint             | Description                       |
+|--------|-----------------------|-----------------------------------|
+| GET    | `/transactions`       | List all transactions            |
+| POST   | `/transactions`       | Create a new transaction          |
+| GET    | `/transactions/{id}`  | Retrieve a specific transaction   |
+| PUT    | `/transactions/{id}`  | Update a specific transaction     |
+| DELETE | `/transactions/{id}`  | Delete a specific transaction     |
 
-## License
+---
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Testing
+
+### Run Unit Tests
+    To execute the unit tests for the API endpoints, run the following command in your terminal:
+```bash
+    php artisan test
+```
+
+Ensure that you have set up the test database in the .env file before running the tests:
+```bash
+    DB_DATABASE_TEST=bill_payments_test
+```
+
+
+## Postman Documentation
+    The Postman collection for the API is available here:  https://documenter.getpostman.com/view/15714523/2sAYBSkYvJ
